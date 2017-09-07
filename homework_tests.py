@@ -85,10 +85,8 @@ t.run()
 t.print_results()
 t.reset()
 
-
-t.add_test("history | /bin/grep hello", GENERAL_ERROR)
-t.add_test("history", "0 history | /bin/grep hello")
-
+t.add_test("/bin/echo hello world", "hello world")
+t.add_test("history 0 | /usr/bin/wc -w", "2")
 t.run()
 t.print_results()
 t.reset()
