@@ -78,15 +78,17 @@ t.print_results()
 t.reset()
 
 ############################# Pipes #############################
-t.add_test("/bin/echo hello world | /bin/grep hello", GENERAL_ERROR)
+t.add_test("/bin/echo hello world | /bin/grep hello", "hello world")
 t.add_test("/bin/echo blah          |/usr/bin/cut -b 3,4", "ah")
 t.add_test("/bin/echo blah|/usr/bin/cut -b 3,4", "ah")
 t.run()
 t.print_results()
 t.reset()
 
-t.add_test("/bin/echo hello world", "hello world")
-t.add_test("history 0 | /usr/bin/hello -w", "2")
+
+t.add_test("history | /bin/grep hello", GENERAL_ERROR)
+t.add_test("history", "0 history | /bin/grep hello")
+
 t.run()
 t.print_results()
 t.reset()
