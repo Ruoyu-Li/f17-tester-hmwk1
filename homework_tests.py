@@ -29,6 +29,9 @@ t.add_test("ls", GENERAL_ERROR)
 
 # But /bin/echo should work
 t.add_test("/bin/echo hello world", "hello world")
+t.add_test("$/bin/echo blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah", "blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah blahblah")
+t.add_test(" ", "")
+t.add_test("\n", "")
 t.run()
 t.print_results()
 t.reset()
@@ -61,7 +64,7 @@ t.add_test("history blahblahblah", GENERAL_ERROR)
 expected_output = [
         "0 history",
         "1 history blahblahblah",
-        "2 history",
+        "2 history",z
 ]
 t.add_test("history", "\n".join(expected_output))
 t.add_test("/bin/echo hello", "hello")
@@ -73,6 +76,9 @@ t.add_test("history 0", "\n".join(expected_output))
 expected_output.append("5 history")
 
 t.add_test("history", "\n".join(expected_output))
+t.add_test("history 6", GENERAL_ERROR)
+t.add_test("history 100", GENERAL_ERROR)
+t.add_test("history 1 2 3", GENERAL_ERROR)
 t.run()
 t.print_results()
 t.reset()
@@ -87,6 +93,8 @@ t.reset()
 
 t.add_test("/bin/echo hello world", "hello world")
 t.add_test("history 0 | /usr/bin/wc -w", "2")
+t.add_test("history -c | history", "")
+t.add_test("cd .. | cd f17-hmwk1-Ruoyu-Li | /bin/ls | /bin/grep R", "README")
 t.run()
 t.print_results()
 t.reset()
